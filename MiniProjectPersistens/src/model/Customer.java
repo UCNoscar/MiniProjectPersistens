@@ -4,12 +4,14 @@ public class Customer {
 	private String name;
 	private String phoneno;
 	private String email;
+	private Address address;
 
 
-public Customer (String name, String phoneno, String email) {
+public Customer (String name, String phoneno, String email, Address address) {
 	this.name = name;
 	this.phoneno = phoneno;
 	this.email = email;
+	this.address = address;
 }
 
 

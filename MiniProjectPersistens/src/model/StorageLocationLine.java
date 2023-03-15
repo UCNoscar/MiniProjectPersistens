@@ -2,20 +2,16 @@ package model;
 
 public class StorageLocationLine {
 	private int quantity;
+	private Product Product;
+	private StorageLocation StorageLocation;
 	
+	public StorageLocationLine(int quantity, Product product, StorageLocation storageLocation) {
+		super();
+		this.quantity = quantity;
+		Product = product;
+		StorageLocation = storageLocation;
+	}
 	
-	public StorageLocationLine (int quantity) {
-		this.quantity = quantity;
-	}
 
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
 	
 }

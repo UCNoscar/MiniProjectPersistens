@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public abstract class Product {
 	private String name;
 	private double purchasePrice;
@@ -8,6 +10,7 @@ public abstract class Product {
 	private String countryOfOrigin;
 	private int minStock;
 	private int quantity;
+	private List<StorageLocationLine> SLLs;
 	
 	
 	public Product(String name, double purchasePrice, SalesPrice salesPrice, double rentPrice, String countryOfOrigin, int minStock, int quantity) {
