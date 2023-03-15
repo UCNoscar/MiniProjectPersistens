@@ -1,5 +1,5 @@
 package db;
-
+import model.*;
 public class StorageLocationDB implements StorageLocationDBIF{
 
 	@Override

@@ -1,5 +1,7 @@
 package db;
 
+import model.Product;
+
 public class ProductDB implements ProductDBIF{
 
 	@Override
