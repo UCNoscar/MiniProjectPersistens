@@ -1,5 +1,6 @@
 package db;
-import model.*;
+import model.Product;
+import model.StorageLocation;
 public class StorageLocationDB implements StorageLocationDBIF{
 
 	@Override
@@ -7,5 +8,6 @@ public class StorageLocationDB implements StorageLocationDBIF{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }

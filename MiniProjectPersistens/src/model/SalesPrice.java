@@ -4,10 +4,10 @@ import java.time.LocalDate;
 
 public class SalesPrice {
 	private LocalDate date;
-	private int price;
+	private Double price;
 	
 	
-	public SalesPrice (LocalDate date, int price) {
+	public SalesPrice (LocalDate date, Double price) {
 		this.date = date;
 		this.price = price;
 	}
@@ -23,12 +23,12 @@ public class SalesPrice {
 	}
 
 
-	public int getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
 
-	public void setPrice(int price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 	
