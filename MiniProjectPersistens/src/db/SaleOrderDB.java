@@ -1,5 +1,7 @@
 package db;
 
+import model.SaleOrder;
+
 public class SaleOrderDB implements SaleOrderDBIF{
 
 	@Override

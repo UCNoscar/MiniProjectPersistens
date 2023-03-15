@@ -1,6 +1,9 @@
 package db;
 
+import model.Product;
+import model.SalesPrice;
+
 public interface PriceDBIF {
 
-	public Price findPriceByProduct(Product product, boolean fullAssotiation);
+	public SalesPrice findPriceByProduct(Product product, boolean fullAssotiation);
 }
