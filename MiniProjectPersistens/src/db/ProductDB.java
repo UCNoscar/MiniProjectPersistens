@@ -3,7 +3,7 @@ package db;
 public class ProductDB implements ProductDBIF{
 
 	@Override
-	public Product findProductByBarcode(String barcode, boolean fullassotiation) {
+	public Product findProductByBarcode(String barcode, boolean fullAssotiation) {
 		// TODO Auto-generated method stub
 		return null;
 	}

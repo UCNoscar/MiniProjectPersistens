@@ -4,6 +4,6 @@ import model.Customer;
 
 public interface CustomerDBIF {
 
-	public Customer findCustomerByPhone(String Phone, boolean fullassotiation);
+	public Customer findCustomerByPhone(String Phone, boolean fullAssotiation);
 	
 }
