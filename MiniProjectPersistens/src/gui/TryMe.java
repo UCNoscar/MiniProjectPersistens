@@ -1,8 +1,9 @@
 package gui;
 
 import ctrl.DataAccessException;
-import db.*;
-import model.*;
+import db.ProductDB;
+import db.ProductDBIF;
+import model.Product;
 
 public class TryMe {
 

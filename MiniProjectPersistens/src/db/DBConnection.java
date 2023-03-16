@@ -20,7 +20,7 @@ public class DBConnection {
 
 	private static final String driverClass = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	private static final String dbName = "DMA-CSD-S222_10461214";
-	private static final String serverAddress = "localhost";
+	private static final String serverAddress = "hildur.ucn.dk";
 	private static final int serverPort = 1433;
 	private static final String userName = "DMA-CSD-S222_10461214";
 	private static final String password = "Password1!";
