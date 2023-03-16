@@ -4,8 +4,8 @@ public class Company extends Customer {
 	private String CVR;
 	private double discountPercent;
 
-	public Company(String name, String phoneno, String email, Address address, String CVR) {
-		super(name, phoneno, email, address);
+	public Company(int id, String name, String phoneno, String email, Address address, String CVR) {
+		super(id, name, phoneno, email, address);
 		this.CVR = CVR;
 		this.discountPercent = 0.1;
 	}

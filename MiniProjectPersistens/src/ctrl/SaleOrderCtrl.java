@@ -1,5 +1,7 @@
 package ctrl;
 
+import db.SaleOrderDB;
+import db.SaleOrderDBIF;
 import model.Customer;
 import model.Product;
 import model.SaleOrder;
@@ -12,16 +14,18 @@ public class SaleOrderCtrl {
 	private ProductCtrl pc;
 	private CustomerCtrl cc;
 	private Customer tempCustomer;
-	private int salesNo = 1;
+	private SaleOrderDBIF saleOrderDBIF;
+	
 	
 	public SaleOrderCtrl() throws DataAccessException {
 		pc = new ProductCtrl();
 		cc = new CustomerCtrl();
+		saleOrderDBIF = new SaleOrderDB();
 	}
 	
-	public SaleOrderLine addProductToOrder(String barcode, int quantity) {
-		Product p = pc.findProductByBarcode(barcode);
-		SaleOrderLine sol = new SaleOrderLine(quantity, p, currOrder);
+	public SaleOrderLine addProductToOrder(String barcode, int quantity) throws DataAccessException {
+		Product product = pc.findProductByBarcode(barcode, false);
+		SaleOrderLine sol = new SaleOrderLine(quantity, product, currOrder);
 		calculateTotal(currOrder);
 		return sol;
 	}
@@ -41,10 +45,11 @@ public class SaleOrderCtrl {
 
 	public void confirmCustomer() {
 		currCustomer = tempCustomer;
+		tempCustomer = null;
+		currOrder.setCustomer(currCustomer);
 	}
 	
-	public void confirmOrder() {
-		"insert into SaleOrder(no, date, total, deliveryStatus, customer_id) values (?, ?, ?, ?, ?);"
-		salesNo++;
+	public void confirmOrder() throws DataAccessException {
+		saleOrderDBIF.persistSaleOrder(currOrder);
 	}
 }

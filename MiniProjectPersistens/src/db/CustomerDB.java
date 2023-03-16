@@ -61,7 +61,8 @@ public class CustomerDB implements CustomerDBIF {
 	private Customer buildObject(ResultSet rs) throws DataAccessException {
 		Customer res = null;
 		try {
-			res = new Customer(rs.getString("fname") + " " + rs.getString("lname"), 
+			res = new Customer(rs.getInt("id"),
+					rs.getString("fname") + " " + rs.getString("lname"), 
 					rs.getString("phoneno"), 
 					rs.getString("email"), 
 					new Address());
