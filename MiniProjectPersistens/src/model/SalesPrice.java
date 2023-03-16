@@ -12,6 +12,12 @@ public class SalesPrice {
 		this.price = price;
 	}
 
+	// HARD CODED
+	public SalesPrice() {
+		this.date = LocalDate.now();
+		this.price = 10.2;
+	}
+
 
 	public LocalDate getDate() {
 		return date;
