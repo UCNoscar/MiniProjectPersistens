@@ -12,6 +12,22 @@ public class SaleOrderLine {
 		this.saleOrder = saleOrder;
 	}
 
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public SaleOrder getSaleOrder() {
+		return saleOrder;
+	}
+
+	public void setSaleOrder(SaleOrder saleOrder) {
+		this.saleOrder = saleOrder;
+	}
+
 	public int getQuantity() {
 		return quantity;
 	}
