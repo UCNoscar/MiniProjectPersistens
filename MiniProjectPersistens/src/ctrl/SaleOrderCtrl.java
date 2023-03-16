@@ -23,7 +23,7 @@ public class SaleOrderCtrl {
 		return sol;
 	}
 	
-	private Customer findCustomerByPhone(String phone) {
+	private Customer findCustomerByPhone(String phone)throws dataAccessException {
 		tempCustomer = cc.findCustomerByPhone(phone);
 		currOrder.setCustomer(tempCustomer);
 	}
