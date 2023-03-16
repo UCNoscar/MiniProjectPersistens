@@ -64,18 +64,18 @@ public class ProductDB implements ProductDBIF {
 			case ("clothing"):
 				res = new ClothingProduct(rs.getString("name"), rs.getDouble("purchasePrice"), new SalesPrice(),
 						rs.getDouble("rentPrice"), rs.getString("countryOfOrigin"), rs.getInt("minStock"),
-						rs.getInt("quantity"), rs.getString("size"), rs.getString("color"));
+						rs.getInt("quantity"), rs.getString("size"), rs.getString("color"), rs.getInt("id"));
 
 				break;
 			case ("equipment"):
 				res = new EquipmentProduct(rs.getString("name"), rs.getDouble("purchasePrice"), new SalesPrice(),
 						rs.getDouble("rentPrice"), rs.getString("countryOfOrigin"), rs.getInt("minStock"),
-						rs.getInt("quantity"), rs.getString("type"), rs.getString("description"));
+						rs.getInt("quantity"), rs.getString("type"), rs.getString("description"), rs.getInt("id"));
 				break;
 			case ("gun replica"):
 				res = new GunReplicaProduct(rs.getString("name"), rs.getDouble("purchasePrice"), new SalesPrice(),
 						rs.getDouble("rentPrice"), rs.getString("countryOfOrigin"), rs.getInt("minStock"),
-						rs.getInt("quantity"), rs.getString("calibre"), rs.getString("material"));
+						rs.getInt("quantity"), rs.getString("calibre"), rs.getString("material"), rs.getInt("id"));
 				break;
 			default:
 				System.out.println("Could not build product");

@@ -1,6 +1,7 @@
 package model;
 
 public abstract class Product {
+	private int id;
 	private String name;
 	private double purchasePrice;
 	private SalesPrice salesPrice;
@@ -10,7 +11,7 @@ public abstract class Product {
 	private int quantity;
 	
 	
-	public Product(String name, double purchasePrice, SalesPrice salesPrice, double rentPrice, String countryOfOrigin, int minStock, int quantity) {
+	public Product(String name, double purchasePrice, SalesPrice salesPrice, double rentPrice, String countryOfOrigin, int minStock, int quantity, int id) {
 		
 		this.name = name;
 		this.purchasePrice = purchasePrice;
@@ -19,6 +20,7 @@ public abstract class Product {
 		this.countryOfOrigin = countryOfOrigin;
 		this.minStock = minStock;
 		this.quantity = quantity;
+		this.id = id;
 	}
 
 
