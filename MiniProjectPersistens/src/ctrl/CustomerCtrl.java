@@ -17,6 +17,6 @@ public class CustomerCtrl {
 	
 	
 	public Customer findCustomerByPhone(String phone) throws DataAccessException {
-		return customerDB.findCustomerByPhone(phone, false);
+		return customerDB.findCustomerByPhone(phone);
 	}
 }
