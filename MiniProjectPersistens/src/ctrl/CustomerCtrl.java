@@ -3,20 +3,21 @@ package ctrl;
 import java.sql.SQLException;
 
 import db.CustomerDB;
+import db.CustomerDBIF;
 import model.Customer;
 
 public class CustomerCtrl {
 	
-	private CustomerDB customerDB;
+	private CustomerDBIF customerDBIF;
 	
 	
 	public CustomerCtrl() throws DataAccessException  {
-			customerDB = new CustomerDB();
+			customerDBIF = new CustomerDB();
 		
 	}
 	
 	
 	public Customer findCustomerByPhone(String phone) throws DataAccessException {
-		return customerDB.findCustomerByPhone(phone);
+		return customerDBIF.findCustomerByPhone(phone);
 	}
 }

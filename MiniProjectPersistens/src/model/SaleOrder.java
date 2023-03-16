@@ -11,19 +11,25 @@ public class SaleOrder {
 	private LocalDate paymentDue;
 	private Customer customer;
 	private double total;
+	private List<SaleOrderLine> SOLs;
+
+	public SaleOrder() {
+		SOLs = new LinkedList<>();
+	}
+	
+	public void addSaleOrderLine(SaleOrderLine sOL) {
+		SOLs.add(sOL);
+	}
+	
 	public double getTotal() {
+		for(SaleOrderLine sOL: SOLs) {
+			total += sOL.getSubTotal();
+		}
 		return total;
 	}
 
 	public void setTotal(double total) {
 		this.total = total;
-	}
-
-	private List<SaleOrderLine> SOLs;
-
-	public SaleOrder() {
-		this.date = LocalDate.now();
-		SOLs = new LinkedList<>();
 	}
 
 	public LocalDate getDate() {
@@ -73,6 +79,5 @@ public class SaleOrder {
 	public void setSOLs(List<SaleOrderLine> sOLs) {
 		SOLs = sOLs;
 	}
-	
-	
+
 }

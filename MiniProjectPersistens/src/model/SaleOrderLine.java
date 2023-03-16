@@ -6,7 +6,6 @@ public class SaleOrderLine {
 	private SaleOrder saleOrder;
 
 	public SaleOrderLine(int quantity, Product product, SaleOrder saleOrder) {
-		super();
 		this.quantity = quantity;
 		this.product = product;
 		this.saleOrder = saleOrder;
@@ -34,5 +33,14 @@ public class SaleOrderLine {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	public double getSubTotal() {
+		return quantity * product.getSalesPrice().getPrice();
+	}
+	
+	@Override
+	public String toString() {
+		return product.getName() + ". Barcode " + product.getBarcode() + ". Quantity: " + quantity;
 	}
 }
