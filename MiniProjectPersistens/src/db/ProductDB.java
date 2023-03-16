@@ -59,46 +59,27 @@ public class ProductDB implements ProductDBIF {
 		Product res = null;
 		try {
 			String type = rs.getString("type").toLowerCase();
-				
-			switch(type) {
-				case("clothing"):
-					res = new ClothingProduct(rs.getString("name"),
-							rs.getDouble("purchasePrice"),
-							new SalesPrice(),
-							rs.getDouble("rentPrice"), 
-							rs.getString("countryOfOrigin"), 
-							rs.getInt("minStock"), 
-							rs.getInt("quantity"), 
-							rs.getString("size"), 
-							rs.getString("color"));
-					
-					break;
-				case("equipment"):
-					res = new EquipmentProduct(rs.getString("name"),
-							rs.getDouble("purchasePrice"),
-							new SalesPrice(),
-							rs.getDouble("rentPrice"), 
-							rs.getString("countryOfOrigin"), 
-							rs.getInt("minStock"), 
-							rs.getInt("quantity"), 
-							rs.getString("type"), 
-							rs.getString("description"));
-					break;
-				case("gun replica"):
-					res = new GunReplicaProduct(rs.getString("name"),
-							rs.getDouble("purchasePrice"),
-							new SalesPrice(),
-							rs.getDouble("rentPrice"), 
-							rs.getString("countryOfOrigin"), 
-							rs.getInt("minStock"), 
-							rs.getInt("quantity"), 
-							rs.getString("calibre"), 
-							rs.getString("material"));
-					break;
-				default:
-					System.out.println("Could not build product");
-				}
-		
+
+			switch (type) {
+			case ("clothing"):
+				res = new ClothingProduct(rs.getString("name"), rs.getDouble("purchasePrice"), new SalesPrice(),
+						rs.getDouble("rentPrice"), rs.getString("countryOfOrigin"), rs.getInt("minStock"),
+						rs.getInt("quantity"), rs.getString("size"), rs.getString("color"));
+
+				break;
+			case ("equipment"):
+				res = new EquipmentProduct(rs.getString("name"), rs.getDouble("purchasePrice"), new SalesPrice(),
+						rs.getDouble("rentPrice"), rs.getString("countryOfOrigin"), rs.getInt("minStock"),
+						rs.getInt("quantity"), rs.getString("type"), rs.getString("description"));
+				break;
+			case ("gun replica"):
+				res = new GunReplicaProduct(rs.getString("name"), rs.getDouble("purchasePrice"), new SalesPrice(),
+						rs.getDouble("rentPrice"), rs.getString("countryOfOrigin"), rs.getInt("minStock"),
+						rs.getInt("quantity"), rs.getString("calibre"), rs.getString("material"));
+				break;
+			default:
+				System.out.println("Could not build product");
+			}
 
 		} catch (SQLException e) {
 			throw new DataAccessException(DBMessages.COULD_NOT_READ_RESULTSET, e);
