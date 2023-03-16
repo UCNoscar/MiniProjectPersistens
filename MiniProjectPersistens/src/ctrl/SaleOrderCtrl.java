@@ -19,34 +19,31 @@ public class SaleOrderCtrl {
 		cc = new CustomerCtrl();
 	}
 	
-	private SaleOrderLine addProductToOrder(String barcode, int quantity) {
+	public SaleOrderLine addProductToOrder(String barcode, int quantity) {
 		Product p = pc.findProductByBarcode(barcode);
 		SaleOrderLine sol = new SaleOrderLine(quantity, p, currOrder);
 		calculateTotal(currOrder);
 		return sol;
 	}
 	
-	private Customer findCustomerByPhone(String phone)throws DataAccessException {
+	public Customer findCustomerByPhone(String phone)throws DataAccessException {
 		tempCustomer = cc.findCustomerByPhone(phone);
-		currOrder.setCustomer(tempCustomer);
 		return tempCustomer;
 	}
 
-	private void calculateTotal(SaleOrder saleOrder) {
+	public void calculateTotal(SaleOrder saleOrder) {
 		 	int quantity = saleOrder.getSOLs().get(saleOrder.getSOLs().size()).getQuantity();
 			double price = saleOrder.getSOLs().get(saleOrder.getSOLs().size()).getProduct().getSalesPrice().getPrice();
 			double subTotal = quantity * price;
 			currOrder.setTotal(currOrder.getTotal()+subTotal);
-		
-		
 		}
 	
 
-	private void confirmCustomer() {
+	public void confirmCustomer() {
 		currCustomer = tempCustomer;
 	}
 	
-	private void confirmOrder() {
+	public void confirmOrder() {
 		"insert into SaleOrder(no, date, total, deliveryStatus, customer_id) values (?, ?, ?, ?, ?);"
 		salesNo++;
 	}
