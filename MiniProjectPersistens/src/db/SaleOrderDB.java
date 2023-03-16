@@ -27,7 +27,7 @@ public class SaleOrderDB implements SaleOrderDBIF {
 	private void init() throws DataAccessException {
 		Connection connection = DBConnection.getInstance().getConnection();
 		try {
-			insertOrderToDatabasePS = connection.prepareStatement(INSERT_ORDER_TO_DATABASE_Q);
+			insertOrderToDatabasePS = connection.prepareStatement(INSERT_ORDER_TO_DATABASE_Q, PreparedStatement.RETURN_GENERATED_KEYS);
 			insertOrderLineToDatabasePS = connection.prepareStatement(INSERT_ORDERLINE_TO_DATABASE_Q);
 		} catch (SQLException e) {
 			throw new DataAccessException(DBMessages.COULD_NOT_PREPARE_STATEMENT, e);
@@ -35,34 +35,39 @@ public class SaleOrderDB implements SaleOrderDBIF {
 	}
 
 	@Override
-	public void persistSaleOrder(SaleOrder saleOrder) throws DataAccessException {
-
+	public int persistSaleOrder(SaleOrder saleOrder) throws DataAccessException {
+		int id = -1;
 		try {
 
 			insertOrderToDatabasePS.setDouble(1, saleOrder.getTotal());
 			insertOrderToDatabasePS.setInt(2, 0);
 			insertOrderToDatabasePS.setInt(3, saleOrder.getCustomer().getId());
 
-			insertOrderToDatabasePS.executeQuery();
-
+			id = DBConnection.getInstance().executeInsertWithIdentity(insertOrderToDatabasePS);
+			System.out.println(id);
 		} catch (SQLException e) {
 			throw new DataAccessException(DBMessages.COULD_NOT_BIND_OR_EXECUTE_QUERY, e);
 		}
+		return id;
 
 	}
 
+	
+	
 	@Override
-	public void persistSaleOrderLine(SaleOrder currOrder, List<SaleOrderLine> soLs) throws DataAccessException {
+	public void persistSaleOrderLine(SaleOrder currOrder, List<SaleOrderLine> soLs, int id) throws DataAccessException {
 
 		try {
-			//VIRKER IKKE!!!
-			for(SaleOrderLine sols: soLs) {
-				insertOrderLineToDatabasePS.setInt(1, 1);
+
+			for (SaleOrderLine sols : soLs) {
+				insertOrderLineToDatabasePS.setInt(1, id);
 				insertOrderLineToDatabasePS.setInt(2, sols.getProduct().getId());
 				insertOrderLineToDatabasePS.setInt(3, sols.getQuantity());
-				insertOrderLineToDatabasePS.setDouble(4, sols.getSubTotal());
+				insertOrderLineToDatabasePS.setInt(4, (int) sols.getSubTotal());
+				
+				insertOrderLineToDatabasePS.executeUpdate();
 			}
-		
+
 		} catch (SQLException e) {
 			throw new DataAccessException(DBMessages.COULD_NOT_BIND_OR_EXECUTE_QUERY, e);
 		}

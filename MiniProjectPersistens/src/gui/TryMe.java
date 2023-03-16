@@ -10,6 +10,7 @@ import db.ProductDB;
 import db.ProductDBIF;
 import model.Customer;
 import model.Product;
+import model.SaleOrderLine;
 
 public class TryMe {
 
@@ -38,7 +39,8 @@ public class TryMe {
 		
 		SaleOrderCtrl soc = new SaleOrderCtrl();
 		
-		soc.addProductToOrder("4321", 5);
+		SaleOrderLine sol = soc.addProductToOrder("4321", 5);
+		System.out.println(sol.toString());
 		soc.findCustomerByPhone("87654321");
 		soc.confirmCustomer();
 		soc.confirmOrder();

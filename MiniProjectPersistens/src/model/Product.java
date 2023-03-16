@@ -2,6 +2,7 @@ package model;
 
 public abstract class Product {
 	private int id;
+	private String barcode;
 	private String name;
 	private double purchasePrice;
 	private SalesPrice salesPrice;
@@ -11,8 +12,8 @@ public abstract class Product {
 	private int quantity;
 	
 	
-	public Product(String name, double purchasePrice, SalesPrice salesPrice, double rentPrice, String countryOfOrigin, int minStock, int quantity, int id) {
-		
+	public Product(String barcode, String name, double purchasePrice, SalesPrice salesPrice, double rentPrice, String countryOfOrigin, int minStock, int quantity, int id) {
+		this.barcode = barcode;
 		this.name = name;
 		this.purchasePrice = purchasePrice;
 		this.salesPrice = salesPrice;
@@ -27,7 +28,23 @@ public abstract class Product {
 	public int getId() {
 		return id;
 	}
-	
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public String getBarcode() {
+		return barcode;
+	}
+
+
+	public void setBarcode(String barcode) {
+		this.barcode = barcode;
+	}
+
+
 	public String getName() {
 		return name;
 	}
@@ -96,5 +113,7 @@ public abstract class Product {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
+
 	
 }
