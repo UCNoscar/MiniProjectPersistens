@@ -12,7 +12,7 @@ public class TryMe {
 
 		System.out.println("succes");
 
-		Product p = pIF.findProductByBarcode("1111", false);
+		Product p = pIF.findProductByBarcode("1234", false);
 		
 		System.out.println(p.toString());
 	}
