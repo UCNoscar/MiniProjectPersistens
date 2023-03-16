@@ -6,6 +6,13 @@ public class Address {
 	private String city;
 	private String country;
 
+//HARD CODED
+public Address() {
+	this.address = "test";
+	this.zipcode = 9999;
+	this.city = "Aalborg";
+	this.country = "Denmark";
+}
 
 public Address(String address, int zipcode, String city, String country) {
 	this.address = address;

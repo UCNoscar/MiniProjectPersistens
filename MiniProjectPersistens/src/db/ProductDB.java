@@ -101,7 +101,6 @@ public class ProductDB implements ProductDBIF {
 		
 
 		} catch (SQLException e) {
-			// e.printStackTrace();
 			throw new DataAccessException(DBMessages.COULD_NOT_READ_RESULTSET, e);
 		}
 		return res;

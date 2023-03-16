@@ -45,8 +45,7 @@ public class CustomerDB implements CustomerDBIF {
 			List<Customer> res = buildObjects(rs);
 			return res;
 		} catch (SQLException e) {
-			DataAccessException he = new DataAccessException("Could not find all", e);
-			throw he;
+			throw new DataAccessException("Could not find all", e);
 		}
 
 	}
@@ -59,15 +58,13 @@ public class CustomerDB implements CustomerDBIF {
 		return res;
 	}
 
-	// select name, phoneno, email
-
 	private Customer buildObject(ResultSet rs) throws DataAccessException {
 		Customer res = null;
 		try {
 			res = new Customer(rs.getString("fname") + " " + rs.getString("lname"), 
 					rs.getString("phoneno"), 
 					rs.getString("email"), 
-					null);
+					new Address());
 		} catch (SQLException e) {
 			throw new DataAccessException(DBMessages.COULD_NOT_READ_RESULTSET, e);
 		}

@@ -1,5 +1,7 @@
 package gui;
 
+import java.util.List;
+
 import ctrl.DataAccessException;
 import db.CustomerDB;
 import db.CustomerDBIF;
@@ -21,8 +23,14 @@ public class TryMe {
 		
 		Customer c = cIF.findCustomerByPhone("12345678");
 		
+		List<Customer> cs = cIF.findAllPS();
+		
+		for(Customer c1: cs) {
+			System.out.println(c1.getName());
+		}
+		
 		System.out.println(p.toString());
 		
-		System.out.println(c.toString());
+		System.out.println(c.getName());
 	}
 }
