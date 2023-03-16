@@ -57,8 +57,8 @@ public class SaleOrderDB implements SaleOrderDBIF {
 		try {
 			//VIRKER IKKE!!!
 			for(SaleOrderLine sols: soLs) {
-				insertOrderLineToDatabasePS.setInt(1, currOrder.getCustomer().getId());
-				insertOrderLineToDatabasePS.setInt(2, sols.getProduct().getQuantity());
+				insertOrderLineToDatabasePS.setInt(1, 1);
+				insertOrderLineToDatabasePS.setInt(2, sols.getProduct().getId());
 				insertOrderLineToDatabasePS.setInt(3, sols.getQuantity());
 				insertOrderLineToDatabasePS.setDouble(4, sols.getSubTotal());
 			}
