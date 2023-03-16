@@ -1,5 +1,6 @@
 package model;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,6 +27,29 @@ public class SaleOrder {
 			total += sOL.getSubTotal();
 		}
 		return total;
+	}
+	
+	public String printOrder() {
+		StringBuilder ress = new StringBuilder();
+		ress.append("Order: ");
+		ress.append(date);
+
+		for (SaleOrderLine sol : SOLs) {
+			ress.append("\nQuantity: ");
+			ress.append(sol.getQuantity());
+			ress.append("\t Product: ");
+			ress.append(sol.getProduct().getName());
+		}
+		DecimalFormat df = new DecimalFormat("#.00");
+		ress.append("\nTotal: ");
+		ress.append(df.format(total));
+		
+		if(customer!= null) {
+			ress.append("\nCustomer: ");
+			ress.append(customer.getName());
+		}
+
+		return ress.toString();
 	}
 
 	public void setTotal(double total) {
