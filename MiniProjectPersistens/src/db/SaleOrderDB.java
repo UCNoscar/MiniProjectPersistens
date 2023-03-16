@@ -12,7 +12,7 @@ import model.SaleOrder;
 
 public class SaleOrderDB implements SaleOrderDBIF {
 
-	private static String INSERT_ORDER_TO_DATABASE_Q = "insert into SaleOrder(No, date, total, deliveryStatus, customer_id) values (?, ?, ?, ?, ?);";
+	private static String INSERT_ORDER_TO_DATABASE_Q = "insert into SaleOrder(date, total, deliveryStatus, customer_id) values (GETDATE(), ?, ?, ?);";
 	private PreparedStatement insertOrderToDatabasePS;
 
 	public SaleOrderDB() throws DataAccessException {
@@ -33,11 +33,9 @@ public class SaleOrderDB implements SaleOrderDBIF {
 		boolean res = false;
 		try {
 
-			insertOrderToDatabasePS.setString(1, "1");
-			insertOrderToDatabasePS.setDate(2, null);
-			insertOrderToDatabasePS.setDouble(3, saleOrder.getTotal());
-			insertOrderToDatabasePS.setInt(4, 0);
-			insertOrderToDatabasePS.setInt(5, saleOrder.getCustomer().getId());
+			insertOrderToDatabasePS.setDouble(1, saleOrder.getTotal());
+			insertOrderToDatabasePS.setInt(2, 0);
+			insertOrderToDatabasePS.setInt(3, saleOrder.getCustomer().getId());
 
 			ResultSet rs = insertOrderToDatabasePS.executeQuery();
 			if (rs != null) {

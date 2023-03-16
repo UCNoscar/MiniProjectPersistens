@@ -3,6 +3,7 @@ package gui;
 import java.util.List;
 
 import ctrl.DataAccessException;
+import ctrl.SaleOrderCtrl;
 import db.CustomerDB;
 import db.CustomerDBIF;
 import db.ProductDB;
@@ -32,5 +33,14 @@ public class TryMe {
 		System.out.println(p.toString());
 		
 		System.out.println(c.getName());
+		
+		
+		
+		SaleOrderCtrl soc = new SaleOrderCtrl();
+		
+		soc.addProductToOrder("1234", 4);
+		soc.findCustomerByPhone("12345678");
+		soc.confirmCustomer();
+		soc.confirmOrder();
 	}
 }
