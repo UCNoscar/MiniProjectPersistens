@@ -1,5 +1,7 @@
 package ctrl;
 
+import java.util.List;
+
 import db.SaleOrderDB;
 import db.SaleOrderDBIF;
 import model.Customer;
@@ -29,7 +31,7 @@ public class SaleOrderCtrl {
 		Product product = pc.findProductByBarcode(barcode, false);
 		SaleOrderLine sol = new SaleOrderLine(quantity, product, currOrder);
 		currOrder.addSaleOrderLine(sol);
-		calculateTotal(currOrder);
+		calculateTotal();
 		return sol;
 	}
 
@@ -38,19 +40,23 @@ public class SaleOrderCtrl {
 		return tempCustomer;
 	}
 
-	public void calculateTotal(SaleOrder saleOrder) {
+	public double calculateTotal() {
 //		int quantity = saleOrder.getSOLs().get(saleOrder.getSOLs().size()).getQuantity();
 //		double price = saleOrder.getSOLs().get(saleOrder.getSOLs().size()).getProduct().getSalesPrice().getPrice();
 //		double subTotal = quantity * price;
-		for (int i = 1; i < saleOrder.getSOLs().size(); i++) {
-			double price = saleOrder.getSOLs().get(i).getProduct().getSalesPrice().getPrice();
-			double quantity = saleOrder.getSOLs().get(i).getQuantity();
+		for (int i = 1; i < currOrder.getSOLs().size(); i++) {
+			double price = currOrder.getSOLs().get(i).getProduct().getSalesPrice().getPrice();
+			double quantity = currOrder.getSOLs().get(i).getQuantity();
 			double subTotal = price * quantity;
 			currOrder.setTotal(currOrder.getTotal() + subTotal);
 		}
+		return currOrder.getTotal();
 	}
 
 	public void confirmCustomer() {
+		if (currOrder == null) {
+			currOrder = new SaleOrder();
+		}
 		currCustomer = tempCustomer;
 		tempCustomer = null;
 		currOrder.setCustomer(currCustomer);
@@ -60,5 +66,13 @@ public class SaleOrderCtrl {
 		int id = saleOrderDBIF.persistSaleOrder(currOrder);
 		saleOrderDBIF.persistSaleOrderLine(currOrder, currOrder.getSOLs(), id);
 		currOrder = null;
+	}
+
+	public String printOrder() {
+		return currOrder.printOrder();
+	}
+
+	public List<SaleOrderLine> getSaleOrderLines() {
+		return currOrder.getSOLs();
 	}
 }
