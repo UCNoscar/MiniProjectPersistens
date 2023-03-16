@@ -41,10 +41,14 @@ public class SaleOrderCtrl {
 //		int quantity = saleOrder.getSOLs().get(saleOrder.getSOLs().size()).getQuantity();
 //		double price = saleOrder.getSOLs().get(saleOrder.getSOLs().size()).getProduct().getSalesPrice().getPrice();
 //		double subTotal = quantity * price;
-		currOrder.setTotal(currOrder.getTotal() + 20.2);
-		
-	}
-
+		for(int i=1 ; i < saleOrder.getSOLs().size() ; i++) {
+			 double price = saleOrder.getSOLs().get(i).getProduct().getSalesPrice().getPrice();
+			 double quantity = saleOrder.getSOLs().get(i).getQuantity();
+			 double subTotal = price * quantity;
+			 currOrder.setTotal(currOrder.getTotal() + subTotal);
+			}
+		}
+	
 	public void confirmCustomer() {
 		currCustomer = tempCustomer;
 		tempCustomer = null;
