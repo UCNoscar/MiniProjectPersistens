@@ -41,7 +41,7 @@ public class CustomerDB implements CustomerDBIF {
 	@Override
 	public List<Customer> findAllPS() throws DataAccessException{
 		try {
-			ResultSet rs = findByIDPS.executeQuery();
+			ResultSet rs = findAllPS.executeQuery();
 			List<Customer> res = buildObjects(rs);
 			return res;
 		} catch (SQLException e) {
