@@ -47,7 +47,7 @@ public class SaleOrderCtrl {
 	}
 	
 	private void confirmOrder() {
-		
+		"insert into SaleOrder(no, date, total, deliveryStatus, customer_id) values (?, ?, ?, ?, ?);"
 		salesNo++;
 	}
 }
