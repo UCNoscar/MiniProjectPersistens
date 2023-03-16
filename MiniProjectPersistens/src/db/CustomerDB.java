@@ -8,18 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ctrl.DataAccessException;
+import model.Address;
 import model.Customer;
 
 
 public class CustomerDB implements CustomerDBIF {
 
-	private static final String FIND_ALL_Q = "select name, phoneno, email from Customer";
+	private static final String FIND_ALL_Q = "select * from Customer";
 	private PreparedStatement findAllPS;
 
 	private static String FIND_BY_ID_Q = FIND_ALL_Q + " where id = ?";
 	private PreparedStatement findByIDPS;
 
-	private static String FIND_BY_PHONE_Q = FIND_ALL_Q + "where phone = ?;";
+	private static String FIND_BY_PHONE_Q = FIND_ALL_Q + "where phoneNo = ?;";
 	private PreparedStatement findByPhonePS;
 
 	public CustomerDB() throws DataAccessException {
