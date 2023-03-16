@@ -1,9 +1,6 @@
 package model;
 
-import java.util.List;
-
 public abstract class Product {
-	private String barcode;
 	private String name;
 	private double purchasePrice;
 	private SalesPrice salesPrice;
@@ -11,12 +8,10 @@ public abstract class Product {
 	private String countryOfOrigin;
 	private int minStock;
 	private int quantity;
-	private List<StorageLocationLine> SLLs;
 	
 	
-	public Product(String barcode, double purchasePrice, SalesPrice salesPrice, 
-			double rentPrice, String countryOfOrigin, int minStock, int quantity) {
-		this.barcode = barcode;
+	public Product(String name, double purchasePrice, SalesPrice salesPrice, double rentPrice, String countryOfOrigin, int minStock, int quantity) {
+		
 		this.name = name;
 		this.purchasePrice = purchasePrice;
 		this.salesPrice = salesPrice;
