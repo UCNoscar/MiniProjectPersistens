@@ -10,6 +10,15 @@ public class SaleOrder {
 	private LocalDate deliveryDate;
 	private LocalDate paymentDue;
 	private Customer customer;
+	private double total;
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
 	private List<SaleOrderLine> SOLs;
 
 	public SaleOrder() {
