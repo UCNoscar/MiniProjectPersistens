@@ -16,9 +16,9 @@ import model.SalesPrice;
 public class ProductDB implements ProductDBIF {
 
 	private static final String FIND_ALL_Q = "select * from Product "
-			+ "inner join ClothingProduct on product.id = ClothingProduct.product_id "
-			+ "inner join EquipmentProduct on product.id = EquipmentProduct.product_id "
-			+ "inner join GunReplicaProduct on product.id = GunReplicaProduct.product_id";
+			+ "left outer join ClothingProduct on product.id = ClothingProduct.product_id "
+			+ "left outer join EquipmentProduct on product.id = EquipmentProduct.product_id "
+			+ "left outer join GunReplicaProduct on product.id = GunReplicaProduct.product_id";
 	private PreparedStatement findAllPS;
 
 	private static String FIND_BY_BARCODE_Q = FIND_ALL_Q + " where barcode = ?;";
@@ -61,7 +61,7 @@ public class ProductDB implements ProductDBIF {
 			String type = rs.getString("type").toLowerCase();
 				
 			switch(type) {
-				case("clothingproduct"):
+				case("clothing"):
 					res = new ClothingProduct(rs.getString("name"),
 							rs.getDouble("purchasePrice"),
 							new SalesPrice(),
@@ -73,7 +73,7 @@ public class ProductDB implements ProductDBIF {
 							rs.getString("color"));
 					
 					break;
-				case("equipmentproduct"):
+				case("equipment"):
 					res = new EquipmentProduct(rs.getString("name"),
 							rs.getDouble("purchasePrice"),
 							new SalesPrice(),
@@ -84,7 +84,7 @@ public class ProductDB implements ProductDBIF {
 							rs.getString("type"), 
 							rs.getString("description"));
 					break;
-				case("gunreplicaproduct"):
+				case("gun replica"):
 					res = new GunReplicaProduct(rs.getString("name"),
 							rs.getDouble("purchasePrice"),
 							new SalesPrice(),
