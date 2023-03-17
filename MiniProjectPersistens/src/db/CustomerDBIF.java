@@ -8,7 +8,7 @@ import model.Customer;
 
 public interface CustomerDBIF {
 
-	List<Customer> findAllPS() throws DataAccessException;
+	public List<Customer> findAll() throws DataAccessException;
 	public Customer findCustomerByPhone(String phone) throws DataAccessException;
 	
 }

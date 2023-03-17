@@ -13,22 +13,16 @@ public class SaleOrderCtrl {
 
 	private SaleOrder currOrder;
 	private Customer currCustomer;
-	private ProductCtrl pc;
-	private CustomerCtrl cc;
-	private Customer tempCustomer;
-	private SaleOrderDBIF saleOrderDBIF;
 
-	public SaleOrderCtrl() throws DataAccessException {
-		pc = new ProductCtrl();
-		cc = new CustomerCtrl();
-		saleOrderDBIF = new SaleOrderDB();
+	public SaleOrderCtrl() {
 	}
 
 	public SaleOrderLine addProductToOrder(String barcode, int quantity) throws DataAccessException {
+		ProductCtrl pc = new ProductCtrl();
 		if (currOrder == null) {
 			currOrder = new SaleOrder();
 		}
-		Product product = pc.findProductByBarcode(barcode, false);
+		Product product = pc.findProductByBarcode(barcode);
 		SaleOrderLine sol = new SaleOrderLine(quantity, product, currOrder);
 		currOrder.addSaleOrderLine(sol);
 		calculateTotal();
@@ -36,14 +30,12 @@ public class SaleOrderCtrl {
 	}
 
 	public Customer findCustomerByPhone(String phone) throws DataAccessException {
-		tempCustomer = cc.findCustomerByPhone(phone);
-		return tempCustomer;
+		CustomerCtrl cc = new CustomerCtrl();
+		currCustomer = cc.findCustomerByPhone(phone);
+		return currCustomer;
 	}
 
 	public double calculateTotal() {
-//		int quantity = saleOrder.getSOLs().get(saleOrder.getSOLs().size()).getQuantity();
-//		double price = saleOrder.getSOLs().get(saleOrder.getSOLs().size()).getProduct().getSalesPrice().getPrice();
-//		double subTotal = quantity * price;
 		for (int i = 1; i < currOrder.getSOLs().size(); i++) {
 			double price = currOrder.getSOLs().get(i).getProduct().getSalesPrice().getPrice();
 			double quantity = currOrder.getSOLs().get(i).getQuantity();
@@ -57,12 +49,11 @@ public class SaleOrderCtrl {
 		if (currOrder == null) {
 			currOrder = new SaleOrder();
 		}
-		currCustomer = tempCustomer;
-		tempCustomer = null;
 		currOrder.setCustomer(currCustomer);
 	}
 
 	public void confirmOrder() throws DataAccessException {
+		SaleOrderDBIF saleOrderDBIF = new SaleOrderDB();
 		saleOrderDBIF.persistSaleOrder(currOrder);
 		currOrder = null;
 	}
@@ -71,7 +62,12 @@ public class SaleOrderCtrl {
 		return currOrder.printOrder();
 	}
 
-	public List<SaleOrderLine> getSaleOrderLines() {
-		return currOrder.getSOLs();
+	public SaleOrder getCurrOrder() {
+		return currOrder;
+	}
+
+	public void cancelOrder() {
+		currOrder = null;
+		currCustomer = null;
 	}
 }

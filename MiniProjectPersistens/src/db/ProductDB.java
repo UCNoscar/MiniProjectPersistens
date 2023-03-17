@@ -40,13 +40,13 @@ public class ProductDB implements ProductDBIF {
 	}
 
 	@Override
-	public Product findProductByBarcode(String barcode, boolean fullAssotiation) throws DataAccessException {
+	public Product findProductByBarcode(String barcode) throws DataAccessException {
 		Product foundProduct = null;
 		try {
 			findByBarcodePS.setString(1, barcode);
 			ResultSet rs = findByBarcodePS.executeQuery();
 			if (rs.next()) {
-				foundProduct = buildProduct(rs, fullAssotiation);
+				foundProduct = buildProduct(rs);
 			}
 		} catch (SQLException e) {
 			throw new DataAccessException(DBMessages.COULD_NOT_BIND_OR_EXECUTE_QUERY, e);
@@ -55,7 +55,7 @@ public class ProductDB implements ProductDBIF {
 		return foundProduct;
 	}
 
-	private Product buildProduct(ResultSet rs, boolean fullAssotiation) throws DataAccessException {
+	private Product buildProduct(ResultSet rs) throws DataAccessException {
 		Product res = null;
 		try {
 			String type = rs.getString("type").toLowerCase();

@@ -16,9 +16,6 @@ public class CustomerDB implements CustomerDBIF {
 	private static final String FIND_ALL_Q = "select * from Customer";
 	private PreparedStatement findAllPS;
 
-	private static String FIND_BY_ID_Q = FIND_ALL_Q + " where id = ?";
-	private PreparedStatement findByIDPS;
-
 	private static String FIND_BY_PHONE_Q = "select * from customer where phoneNo = ?;";
 	private PreparedStatement findByPhonePS;
 
@@ -30,7 +27,6 @@ public class CustomerDB implements CustomerDBIF {
 		Connection connection = DBConnection.getInstance().getConnection();
 		try {
 			findAllPS = connection.prepareStatement(FIND_ALL_Q);
-			findByIDPS = connection.prepareStatement(FIND_BY_ID_Q);
 			findByPhonePS = connection.prepareStatement(FIND_BY_PHONE_Q);
 		} catch (SQLException e) {
 			// e.printStackTrace();
@@ -39,7 +35,7 @@ public class CustomerDB implements CustomerDBIF {
 	}
 
 	@Override
-	public List<Customer> findAllPS() throws DataAccessException {
+	public List<Customer> findAll() throws DataAccessException {
 		try {
 			ResultSet rs = findAllPS.executeQuery();
 			List<Customer> res = buildObjects(rs);

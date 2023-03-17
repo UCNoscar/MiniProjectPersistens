@@ -5,20 +5,19 @@ import db.ProductDBIF;
 import model.Product;
 
 public class ProductCtrl {
-	private ProductDBIF productDBIF;
 
 	public ProductCtrl() throws DataAccessException {
-		productDBIF = new ProductDB();
 	}
 
-	public Product findProductByBarcode(String barcode, Boolean fullAssotiation) throws DataAccessException {
+	public Product findProductByBarcode(String barcode) throws DataAccessException {
+		ProductDBIF productDBIF = new ProductDB();
+		
 		Product res = null;
-		
-		res = productDBIF.findProductByBarcode(barcode, fullAssotiation);
-		
+		res = productDBIF.findProductByBarcode(barcode);
 		return res;
 
 	}
-//	+ updateStockWithProductQuantity(product: Product, quantity: int): boolean
-//	+ reserveProductQuantity(product: Product, quantity: int)
+	// TODO: implementer følgende metoder
+	// + updateStockWithProductQuantity(product: Product, quantity: int): boolean
+	// + reserveProductQuantity(product: Product, quantity: int)
 }

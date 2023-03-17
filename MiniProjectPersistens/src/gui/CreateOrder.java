@@ -400,6 +400,7 @@ public class CreateOrder extends JDialog {
 	}
 
 	private void cancelCliked() {
+		soc.cancelOrder();
 		super.setVisible(false);
 		super.dispose();
 	}
@@ -441,7 +442,7 @@ public class CreateOrder extends JDialog {
 		try {
 			int quantity = Integer.parseInt(txtQuantity.getText());
 			soc.addProductToOrder(txtBarcode.getText(), quantity);
-			sol = soc.getSaleOrderLines();
+			sol = soc.getCurrOrder().getSOLs();
 			cotm.setData(sol);
 			txtBarcode.setText("");
 			DecimalFormat decimalFormat = new DecimalFormat("#.00");
