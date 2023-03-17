@@ -312,6 +312,7 @@ public class CreateOrder extends JDialog {
 				}
 				{
 					txtQuantity = new JTextField();
+					txtQuantity.setHorizontalAlignment(SwingConstants.CENTER);
 					GridBagConstraints gbc_txtQuantity = new GridBagConstraints();
 					gbc_txtQuantity.insets = new Insets(0, 0, 5, 0);
 					gbc_txtQuantity.fill = GridBagConstraints.HORIZONTAL;

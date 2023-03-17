@@ -63,8 +63,7 @@ public class SaleOrderCtrl {
 	}
 
 	public void confirmOrder() throws DataAccessException {
-		int id = saleOrderDBIF.persistSaleOrder(currOrder);
-		saleOrderDBIF.persistSaleOrderLine(currOrder, currOrder.getSOLs(), id);
+		saleOrderDBIF.persistSaleOrder(currOrder);
 		currOrder = null;
 	}
 

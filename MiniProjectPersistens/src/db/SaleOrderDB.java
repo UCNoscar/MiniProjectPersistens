@@ -35,27 +35,24 @@ public class SaleOrderDB implements SaleOrderDBIF {
 	}
 
 	@Override
-	public int persistSaleOrder(SaleOrder saleOrder) throws DataAccessException {
+	public void persistSaleOrder(SaleOrder saleOrder) throws DataAccessException {
 		int id = -1;
 		try {
 
 			insertOrderToDatabasePS.setDouble(1, saleOrder.getTotal());
 			insertOrderToDatabasePS.setInt(2, 0);
 			insertOrderToDatabasePS.setInt(3, saleOrder.getCustomer().getId());
-
 			id = DBConnection.getInstance().executeInsertWithIdentity(insertOrderToDatabasePS);
-			System.out.println(id);
+
+			persistSaleOrderLine(saleOrder, saleOrder.getSOLs(), id);
 		} catch (SQLException e) {
 			throw new DataAccessException(DBMessages.COULD_NOT_BIND_OR_EXECUTE_QUERY, e);
 		}
-		return id;
-
 	}
 
 	
 	
-	@Override
-	public void persistSaleOrderLine(SaleOrder currOrder, List<SaleOrderLine> soLs, int id) throws DataAccessException {
+	private void persistSaleOrderLine(SaleOrder currOrder, List<SaleOrderLine> soLs, int id) throws DataAccessException {
 
 		try {
 
