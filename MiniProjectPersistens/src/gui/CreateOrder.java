@@ -38,7 +38,6 @@ import java.awt.GridLayout;
 
 public class CreateOrder extends JDialog {
 
-	private static String INSTORE = "In-Store";
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtId;
 	private JTextField txtName;
