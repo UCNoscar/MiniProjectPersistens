@@ -6,6 +6,7 @@ import model.StorageLocation;
 
 public class StorageLocationCtrl {
 	private StorageLocationDBIF slDBIF;
+	
 	public StorageLocation findStorageLocationByProduct(Product product) {
 		StorageLocation res = null;
 		
