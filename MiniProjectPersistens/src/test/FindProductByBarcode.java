@@ -3,6 +3,7 @@ package test;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
+import ctrl.DataAccessException;
 import ctrl.ProductCtrl;
 import model.Product;
 
@@ -12,7 +13,7 @@ public class FindProductByBarcode {
 	Product p;
 	
 	@Before
-	public void setUp() {
+	public void setUp() throws DataAccessException {
 		pCtrl = new ProductCtrl();
 	}
 	
